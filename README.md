@@ -1,41 +1,34 @@
 <h1 align="center">
   <img loading="lazy" src="readme-res/banner.png"/>
+New banner coming very soon!
 </h1>
 <p align="center">
   <a href="https://github.com/ArtisanROM/ArtisanROM/blob/sixteen/LICENSE"><img loading="lazy" src="https://img.shields.io/github/license/ArtisanROM/ArtisanROM?style=for-the-badge&logo=github"/></a>
   <a href="https://github.com/ArtisanROM/ArtisanROM/commits/sixteen"><img loading="lazy" src="https://img.shields.io/github/last-commit/ArtisanROM/ArtisanROM/sixteen?style=for-the-badge"/></a>
   <a href="https://github.com/ArtisanROM/ArtisanROM/stargazers"><img loading="lazy" src="https://img.shields.io/github/stars/ArtisanROM/ArtisanROM?style=for-the-badge"/></a>
 </p>
-<p align="center">ArtisanROM <i>Quant</i> is a work-in-progress custom firmware for Samsung Galaxy devices.</p>
+<p align="center">OutputROM is OneUI 8.5/9.0 Custom ROM for S20 series.</p>
 
 <p align="center">
-  <a href="https://github.com/ArtisanROM/ArtisanROM/issues">🚀 issues</a>
+  <a href="about:blank">🚀 issues (Valid link soon) </a>
   •
-  <a href="https://discord.gg/TxYWApVRaE">💬 Discord</a>
+  <a href="about:blank">💬 Discord (Valid link soon) </a>
   •
-  <a  href="https://github.com/ArtisanROM/ArtisanROM/wiki">📖 Wiki</a>
+  <a  href="about:blank">📖 Wiki (Valid link soon) </a>
   •
-  <a href="https://github.com/ArtisanROM/ArtisanROM/blob/sixteen/CHANGELOG.md">📝 Changelog</a>
+  <a href="about:blank">📝 Changelog (Valid link soon) </a>
   •
-  <a href="https://github.com/ArtisanROM/ArtisanROM/blob/sixteen/MAINTAINERS">🧑‍💻 Maintainers</a>
+  <a href="about:blank">🧑‍💻 Maintainers (Valid link soon) </a>
 </p>
 
-# What is ArtisanROM Quant?
-ArtisanROM Quant is a work-in-progress custom firmware for Samsung Galaxy devices.
-
-It's based on the latest and greatest iteration of Samsung's UX and it also includes additional features and tweaks to ensure the best possible experience out of the box.
-
-It is based on the UN1CA build system which allows automatic downloading/extraction of the firmware, applying the required patches and generating a flashable zip package for the specified target device.
-
-ArtisanROM Quant supports devices using the Exynos 990 SoC
-
-Any form of contribution, suggestions, bug report or feature request for the project will be welcome.
+# What is OutputROM?
+OutputROM is a One UI 8.5/9.0-based custom ROM for Exynos 990 devices. The ROM is built on the UN1CA and ArtisanROM projects. Our goal is to bring the latest software and all flagship Samsung features to your device, while ensuring maximum smoothness and optimization.
 
 # Features
 ### Core features:
-- Based on the latest stable Galaxy S22 firmware
+- Based on the latest stable Galaxy S25 firmware
 - EROFS powered
-- Galaxy S25 wallpapers/sounds included
+- Galaxy S26 or any latest Samsung phone wallpapers/sounds included
 - Galaxy AI support
   - Audio eraser
   - Browsing assist
@@ -71,9 +64,6 @@ Any form of contribution, suggestions, bug report or feature request for the pro
 
 \* DeX via HDMI not available for devices without USB-C DP support
 
-### ArtisanROM-exclusive features:
-- Integrated OTA updates app
-- Completely upstreamed kernels*
 
 \* Exynos990
 
@@ -125,23 +115,17 @@ This project is licensed under the terms of the [GNU General Public License v3.0
 - You are not allowed to modify or redistribute this ROM without prior approval
 
 # Contributors
-<a href="https://github.com/ArtisanROM/ArtisanROM/graphs/contributors"><img loading="lazy" src="https://contrib.rocks/image?repo=ArtisanROM/ArtisanROM"/></a>
+<a href="no"><img loading="lazy" src="about:blank"/></a>
 
 # Credits:
+- **[Artisan](https://github.com/Android-Artisan)** for creating base ROM - ArtisanROM
 - **[salvogiangri](https://github.com/salvogiangri)** for the UN1CA build system, OneUI patches, and general help and support while developing.
 - **[ExtremeXT](https://github.com/ExtremeXT)** for helping me fix bugs and giving me support.
-- **[GhasemzadehFard-Dev](https://github.com/GhasemzadehFard-Dev)** for helping fix many bugs I was not able to fix.
-- **[Mesazane](https://github.com/Mesazane)** for testing and helping with the updaters design, and for updating and fixing KernelSU-Next on the Kernels.
-- **[ricci205GTI](https://github.com/ricci205GTI)** for fixing motion photo and help with the x1s.
-- **[immohammeeed](https://github.com/immohammeeed)** for creating the website for this project.
-- **[3q5i](https://github.com/3q5i)** for support and ideas for the ROM.
-- **[irvinhaha](https://github.com/irvinhaha)** for designing many banners and logos
-- **[CiprianDinca](https://github.com/CiprianDinca9)** for custom ExtremeROM ringtones
-- **[Dupazlasu/Milxnaq](https://github.com/milxnaq)** for fixing bluetooth on the S10x and much more
-- More that I can't remember right now and will have to be added in the future
+- More soon ig
 
 ## Original UN1CA credits:
 A special thanks goes to the following for their invaluable contributions in no particular order:
+** From Artisan: **
 - **[ShaDisNX255](https://github.com/ShaDisNX255)** for his help, time and for his [NcX ROM](https://github.com/ShaDisNX255/NcX_Stock) which inspired this project
 - **[DavidArsene](https://github.com/DavidArsene)** for his help and time
 - **[paulowesll](https://github.com/paulowesll)** for his help and support
@@ -151,7 +135,3 @@ A special thanks goes to the following for their invaluable contributions in no 
 - **[iDrinkCoffee](https://github.com/iDrinkCoffee-TG)** and **[RisenID](https://github.com/RisenID)** for their support
 - **[LineageOS Team](https://www.lineageos.org/)** for their original [OTA updater implementation](https://github.com/LineageOS/android_packages_apps_Updater)
 - *All the UN1CA project forks, contributors, testers and users ❤️*
-
-# ArtisanROM Archive
-- [ArtisanROM Archive Org](https://github.com/ArtisanROM-archive)
-- [Old Sixteen branch](https://github.com/ArtisanROM-archive/ArtisanROM_old)
