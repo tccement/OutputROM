@@ -46,34 +46,39 @@ elif [[ "$TARGET_CODENAME" == "c2s" ]]; then
 fi
 LOG_STEP_OUT
 
-LOG "- Disabling encryption"
-LINE=$(sed -n "/^\/dev\/block\/by-name\/userdata/=" "$WORK_DIR/vendor/etc/fstab.exynos990")
-sed -i "${LINE}s/,fileencryption=ice//g" "$WORK_DIR/vendor/etc/fstab.exynos990"
-
-# ODE
-sed -i -e "/ODE/d" -e "/keydata/d" -e "/keyrefuge/d" "$WORK_DIR/vendor/etc/fstab.exynos990"
+LOG "- Disabling encryption safely"
+FSTAB_FILE="$WORK_DIR/vendor/etc/fstab.exynos990"
+if [ -f "$FSTAB_FILE" ]; then
+    # Usunięcie dowolnej metody fileencryption (ice, v2, aes-256-xts itp.) w linii /userdata
+    sed -i -E '/\/userdata/s/,fileencryption=[^, \t]+//g' "$FSTAB_FILE"
+    
+    # ODE / Knox encryption removal
+    sed -i -e "/ODE/d" -e "/keydata/d" -e "/keyrefuge/d" "$FSTAB_FILE"
+fi
 
 LOG_STEP_IN "- Injecting ZRAM for RAM Plus"
-# Check if zram is already defined to avoid duplicates
-if ! grep -q "zram0" "$WORK_DIR/vendor/etc/fstab.exynos990"; then
-    echo "" >> "$WORK_DIR/vendor/etc/fstab.exynos990"
-    echo "/dev/block/zram0                                none                swap      defaults,zramsize=75%    0 0" >> "$WORK_DIR/vendor/etc/fstab.exynos990"
+if [ -f "$FSTAB_FILE" ]; then
+    if ! grep -q "zram0" "$FSTAB_FILE"; then
+        echo "" >> "$FSTAB_FILE"
+        echo "/dev/block/zram0                                none                swap        defaults,zramsize=75%    0 0" >> "$FSTAB_FILE"
+    fi
 fi
 LOG_STEP_OUT
 
-# For some reason we are missing 2 permissions here: android.hardware.security.model.compatible and android.software.controls
-# First one is related to encryption and second one to SmartThings Device Control
-LOG "- Patching vendor permissions"
-sed -i '$d' "$WORK_DIR/vendor/etc/permissions/handheld_core_hardware.xml"
-{
-    echo ""
-    echo "    <!-- Indicate support for the Android security model per the CDD. -->"
-    echo "    <feature name=\"android.hardware.security.model.compatible\"/>"
-    echo ""
-    echo "    <!--  Feature to specify if the device supports controls.  -->"
-    echo "    <feature name=\"android.software.controls\"/>"
-    echo "</permissions>"
-} >> "$WORK_DIR/vendor/etc/permissions/handheld_core_hardware.xml"
+LOG "- Patching vendor permissions safely"
+PERM_FILE="$WORK_DIR/vendor/etc/permissions/handheld_core_hardware.xml"
+if [ -f "$PERM_FILE" ]; then
+    # Bezpieczne usunięcie znacznika zamykającego i ponowne złożenie pliku
+    sed -i '/<\/permissions>/d' "$PERM_FILE"
+    {
+        echo "    <!-- Indicate support for the Android security model per the CDD. -->"
+        echo "    <feature name=\"android.hardware.security.model.compatible\"/>"
+        echo ""
+        echo "    <!-- Feature to specify if the device supports controls. -->"
+        echo "    <feature name=\"android.software.controls\"/>"
+        echo "</permissions>"
+    } >> "$PERM_FILE"
+fi
 
 LOG_STEP_IN "- Setting stock Bluetooth profiles"
 SET_PROP "product" "bluetooth.profile.asha.central.enabled" "true"
@@ -105,8 +110,7 @@ fi
 LOG_STEP_OUT
 
 LOG_STEP_IN "- Enabling RAM Plus Floating Feature"
-# Find floating_feature.xml anywhere in the ROM and patch it
-find "$WORK_DIR" -name "floating_feature.xml" -type f | while read xml; do
+find "$WORK_DIR" -name "floating_feature.xml" -type f | while read -r xml; do
     LOG "  - Patching: $xml"
     sed -i 's/SEC_FLOATING_FEATURE_COMMON_SUPPORT_RAM_PLUS>FALSE/SEC_FLOATING_FEATURE_COMMON_SUPPORT_RAM_PLUS>TRUE/g' "$xml"
     sed -i 's/SEC_FLOATING_FEATURE_COMMON_SUPPORT_RAM_PLUS>false/SEC_FLOATING_FEATURE_COMMON_SUPPORT_RAM_PLUS>TRUE/g' "$xml"
